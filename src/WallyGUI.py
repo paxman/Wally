@@ -1,14 +1,15 @@
 # -*- coding: utf-8 -*-
 
 import gtk
-from WallyUtil import Plural
+import os
 from functools import partial
+from WallyUtil import Plural
 
 class WallyTray(gtk.StatusIcon):
     def __init__(self, manager):
         gtk.StatusIcon.__init__(self)
         self.manager = manager
-        self.set_from_file("tango_desktop_preferences.png")
+        self.set_from_file(os.path.dirname(os.path.realpath(__file__))+"/images/tango_desktop_preferences.png")
         self.connect('popup-menu', self.menu_popup)
         self.connect('button-press-event', self.manager.user_change_wallpaper)#self.on_double_click,test=1)
         
